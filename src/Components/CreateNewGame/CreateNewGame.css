@@ -1,0 +1,58 @@
+.btn {
+    font-family: Verdana,sans-serif;
+    font-size: 15px;
+    padding-left: 8px;
+    padding-right: 8px;
+    cursor: pointer;
+    border-style: solid;
+    background-color: #d0f3e8;
+    border-color: #d0f3e8;
+    margin: 0 3px;
+}
+
+input {display: block}
+
+label { display: block; }
+
+.create-new-game-wrapper {
+    font-family: Verdana,sans-serif;
+    font-size: 15px;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.create-new-game-wrapper .game-title-label {
+    margin: 0 5px;    
+    font-size: 15px;
+}
+
+.create-new-game-wrapper .game-title-input {    
+    font-size: 15px;
+    line-height: 15px;
+    margin: 1px;
+    border: 1px solid #ccc;   
+}
+
+.create-new-game-wrapper .game-players-num-label {
+    margin: 0 5px;    
+    font-size: 15px;
+}
+
+.create-new-game-wrapper .game-players-num-input {    
+    font-size: 15px;
+    line-height: 15px;
+    margin: 1px;
+    border: 1px solid #ccc;   
+}
+
+.create-new-game-wrapper .submit-btn:hover {
+    background-color: #cadcff;
+    border-color: #cadcff;
+}
+
+.create-new-game-wrapper .create-new-game-error-message {
+    color: red;
+    font-weight: 600;
+}
