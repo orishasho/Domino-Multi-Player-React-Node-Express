@@ -123,7 +123,7 @@ function restartGame(req, res, next) {
 			gamesList[i].status = 'waiting';
 			gamesList[i].activePlayers = [];
 			gamesList[i].currPlayer = null;
-			gamesList[i].passivePlayers = null;
+			gamesList[i].passivePlayers = [];
 			console.log('Game restarted');
 			break;
 		}
@@ -149,6 +149,21 @@ function leaveGame(req, res, next) {
 			for (let j = 0; j < gamesList[i].activePlayers.length; j++) {
 				if (gamesList[i].activePlayers[j] == data.userToLeave) {
 					gamesList[i].activePlayers.splice(j, 1);
+					gamesList[i].curPlayersNum = gamesList[i].curPlayersNum - 1;
+				}
+			}
+		}
+	}
+	next();
+}
+
+function leaveGamePassive(req, res, next) {
+	const data = JSON.parse(req.body);
+	for(i = 0; i < gamesList.length; i++) {
+		if (gamesList[i].title == data.gameTitle) {
+			for (let j = 0; j < gamesList[i].passivePlayers.length; j++) {
+				if (gamesList[i].passivePlayers[j] == data.userToLeave) {
+					gamesList[i].passivePlayers.splice(j, 1);
 					gamesList[i].curPlayersNum = gamesList[i].curPlayersNum - 1;
 				}
 			}
@@ -184,5 +199,6 @@ module.exports = {
 	restartGame,
 	deleteGame,
 	leaveGame,
-	unwatchGame
+	unwatchGame,
+	leaveGamePassive
 };

@@ -114,12 +114,22 @@ export default class GameLogic {
         });
     }
 
-    removePassivePlayer(playerName, gameIndex) {
+    removePassivePlayer(playerName, gameIndex, gameTitle) {
         const dataToUpdate = {
             gameIndex: gameIndex,
-            playerName: playerName
+            userToLeave: playerName,
+            gameTitle: gameTitle
         };
         fetch('/singleGame/removePassivePlayer', {method:'POST', body: JSON.stringify(dataToUpdate), credentials: 'include'})
+        .then(res => {
+            if (res.ok) {
+                console.log('Passive player removed successfuly');
+            }
+            else {
+                console.log('Error in removing passive player');
+            }
+        });
+        fetch('/games/leaveGamePassive', {method:'POST', body: JSON.stringify(dataToUpdate), credentials: 'include'})
         .then(res => {
             if (res.ok) {
                 console.log('Passive player removed successfuly');

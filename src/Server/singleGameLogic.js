@@ -38,7 +38,7 @@ function addPassivePlayers(req, res, next) {
 
 function removePassivePlayer(req, res, next) {
     const dataToUpdate = JSON.parse(req.body);
-    const indexToRemove = passivePlayers[dataToUpdate.gameIndex].indexOf(dataToUpdate.playerName);
+    const indexToRemove = passivePlayers[dataToUpdate.gameIndex].indexOf(dataToUpdate.userToLeave);
     passivePlayers[dataToUpdate.gameIndex].splice(indexToRemove, 1);
     next();
 }
@@ -174,7 +174,7 @@ function updateCurrPlayerIndex(gameIndex) {
     }
 }
 
-function getGameData() { // Need to pass gameIndex as url param
+function getGameData() { 
     var gameData = {
         bank: currBank,
         hands: playersCurrHands,

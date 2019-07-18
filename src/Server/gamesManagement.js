@@ -40,4 +40,8 @@ gamesManagement.post('/leaveGame', auth.leaveGame, (req, res) => {
 	res.sendStatus(200);
 });
 
+gamesManagement.post('/leaveGamePassive', auth.leaveGamePassive, (req, res) => {
+	res.sendStatus(200);
+});
+
 module.exports = gamesManagement;

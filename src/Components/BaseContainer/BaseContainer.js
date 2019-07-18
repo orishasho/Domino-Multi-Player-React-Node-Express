@@ -40,8 +40,8 @@ export default class BaseContainer extends Component {
         this.backToLobbyFromGame = this.backToLobbyFromGame.bind(this);
         this.deleteGame = this.deleteGame.bind(this);
         this.leaveGame = this.leaveGame.bind(this);
-        this.backToLobbyFromGame = this.backToLobbyFromGame.bind(this);
         this.watchGame = this.watchGame.bind(this);
+        this.restartGame = this.restartGame.bind(this);
     }
     //-----LIFECYCLE METHODS-----
     componentDidUpdate(prevProps, prevState) {
@@ -326,17 +326,10 @@ export default class BaseContainer extends Component {
     }
     //-----GAME FUNCTIONS-----
     backToLobbyFromGame() {
-        this.restartGame();
-        this.setState({startGame: false, showLobby: true, joinedGameTitle: '', joinedGameIndex: null});
-    }
-
-    backToLobbyFromGame() {
         if (!this.state.isWatching) {
-            this.setState({startGame: false, showLobby: true, joinedGameTitle: '', joinedGameIndex: null});
+            this.restartGame();
         }
-        else {
-            this.leaveGame(this.state.currentUser);
-        }
+        this.setState({startGame: false, showLobby: true, joinedGameTitle: '', joinedGameIndex: null});
     }
 
     restartGame() {

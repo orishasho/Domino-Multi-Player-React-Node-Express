@@ -10,7 +10,7 @@ const ActiveGamesList = ({gamesList, joinGame, deleteGame, currentUser, watchGam
                 {gamesList.map((game, i) => <li key={i}>
                     <p>
                     Title: {game.title}, Creator: {game.creator},
-                    Required players: {game.maxPlayersNum}, Players signed in: {game.curPlayersNum},
+                    Required players: {game.maxPlayersNum}, Players signed in: {game.activePlayers.length},
                     Players watching: {game.passivePlayers.length}, Game status: {game.status}
                     </p>
                     {game.status === 'waiting' ?
@@ -23,7 +23,7 @@ const ActiveGamesList = ({gamesList, joinGame, deleteGame, currentUser, watchGam
                             gameIndex={game.gameIndex}
                             watchGame={watchGame}
                             gameStatus={game.status}/>
-                    {game.curPlayersNum === 0 && game.creator == currentUser ?
+                    {game.activePlayers.length === 0 && game.creator == currentUser ?
                         <DeleteGameBtn gameTitle={game.title} deleteGame={deleteGame}/> : null}
                 </li>)}
             </ol>

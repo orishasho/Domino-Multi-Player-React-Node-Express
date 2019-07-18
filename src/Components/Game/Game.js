@@ -230,7 +230,7 @@ export default class Game extends Component {
 
     removePassivePlayer() {
         if (this.state.passivePlayers.includes(this.props.currentUser)) {
-            this.gameLogic.removePassivePlayer(this.props.currentUser, this.props.gameIndex);
+            this.gameLogic.removePassivePlayer(this.props.currentUser, this.props.gameIndex, this.props.currGame.title);
         }
     }
     //----------RENDER METHODS----------
@@ -573,9 +573,9 @@ export default class Game extends Component {
                 {this.renderHand()}
                 {this.renderWinLoseMessages()}
                 {this.renderGameData()}
+                {this.renderBackToLobbyTimer()}
                 {this.renderBackToLobbyFromGameBtn()}
                 {this.renderStats()}
-                {this.renderBackToLobbyTimer()}
                 {this.renderChatRoom()}
             </div>
         );
