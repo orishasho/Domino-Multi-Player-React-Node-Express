@@ -23,7 +23,7 @@ const ActiveGamesList = ({gamesList, joinGame, deleteGame, currentUser, watchGam
                             gameIndex={game.gameIndex}
                             watchGame={watchGame}
                             gameStatus={game.status}/>
-                    {game.activePlayers.length === 0 && game.creator == currentUser ?
+                    {game.activePlayers.length === 0 && game.passivePlayers.length === 0 && game.creator == currentUser ?
                         <DeleteGameBtn gameTitle={game.title} deleteGame={deleteGame}/> : null}
                 </li>)}
             </ol>
