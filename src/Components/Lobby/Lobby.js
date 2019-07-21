@@ -18,26 +18,28 @@ const Lobby = ({
     deleteGame,
     watchGame}) => {
         return (
-            <div className='lobby-wrapper'>
-                <h3>Welcome to Multi Player Domino, {currentUser}</h3>
-                <h3>Active players:</h3>
-                {userNamesList ? <ActiveUsersList userNamesList={userNamesList}/> : null}
-                <h3>Active games:</h3>
-                {gamesList ? 
-                    <ActiveGamesList 
-                        gamesList={gamesList}
-                        joinGame={joinGame}
-                        deleteGame={deleteGame}
-                        currentUser={currentUser}
-                        watchGame={watchGame}
-                        /> : null}
-                {showCreateGame ?
-                    <CreateNewGame 
-                        currentUser={currentUser}
-                        errorMessage={createGameErrMessage}
-                        handleCreateNewGame={handleCreateNewGame}/> :
-                    <h3>Game "{gameTitle}" created!</h3>}
-                <LogoutBtn logoutHandler={logoutHandler}/>
+            <div className='lobby-header'>
+                <div className="lobby-wrapper">
+                    <h1 className="welcome-msg">Welcome to Multi Player Domino, {currentUser}</h1>
+                    <h3>Active players:</h3>
+                    {userNamesList ? <ActiveUsersList userNamesList={userNamesList}/> : null}
+                    <h3>Active games:</h3>
+                    {gamesList ? 
+                        <ActiveGamesList 
+                            gamesList={gamesList}
+                            joinGame={joinGame}
+                            deleteGame={deleteGame}
+                            currentUser={currentUser}
+                            watchGame={watchGame}
+                            /> : null}
+                    {showCreateGame ?
+                        <CreateNewGame 
+                            currentUser={currentUser}
+                            errorMessage={createGameErrMessage}
+                            handleCreateNewGame={handleCreateNewGame}/> :
+                        <h3>Game "{gameTitle}" created!</h3>}
+                    <LogoutBtn logoutHandler={logoutHandler}/>
+                </div>
             </div>
         );
 }
