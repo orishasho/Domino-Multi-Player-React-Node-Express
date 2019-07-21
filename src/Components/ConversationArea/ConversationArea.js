@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+const _ = require('lodash');
 
-export default class converssionArea extends Component {
+export default class ConversationArea extends Component {
     constructor() {
         super();
         this.state = {
@@ -19,25 +20,33 @@ export default class converssionArea extends Component {
         }
     }
 
-    render() {               
-        return(
-            <div className="conversation-area-wrpper">
-                {this.state.content.map((line, index) => (<p key={line.user.name + index}>{line.user.name}:  {line.text}</p>))}
-            </div>
-        );
+    render() {
+        if (this.state.content && this.state.content.length > 0) {
+            return(
+                <div className="conversation-area-wrpper">
+                    {this.state.content.map((line, index) => {
+                        return (<p key={line.user.name + index}>{line.user.name}: {line.text}</p>);
+                    })}
+                </div>
+            );
+        }
+        else {
+            return null;
+        }
     }
 
     getChatContent() {
         return fetch(`/chat`, {method: 'GET', credentials: 'include'})
-        .then((response) => {
-            if (!response.ok){
-                throw response;
+        .then((res) => {
+            if (!res.ok){
+                throw res;
             }
             this.timeoutId = setTimeout(this.getChatContent, 200);
-            return response.json();            
+            return res.json();    
         })
-        .then(content => {
-            this.setState(()=>({content}));
+        .then(allChatsContents => {
+            console.log(allChatsContents[this.props.gameIndex]);
+            this.setState(()=>({content: _.cloneDeep(allChatsContents[this.props.gameIndex])}));
         })
         .catch(err => {throw err});
     }

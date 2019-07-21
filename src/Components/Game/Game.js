@@ -557,7 +557,7 @@ export default class Game extends Component {
                     <div className="user-info-area">
                         Chat: 
                     </div>
-                    <ChatContainer/>                
+                    <ChatContainer gameIndex={this.props.gameIndex}/>                
                 </div>
             );
         }

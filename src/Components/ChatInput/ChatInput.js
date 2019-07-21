@@ -21,15 +21,15 @@ export default class ChatInput extends Component {
     sendText(e) {
         e.preventDefault();
         this.setState(()=>({sendInProgress: true}));
-        const text = this.inputElement.value;
-        fetch('/chat', {
+        const msg = this.inputElement.value;
+        fetch(`/chat/${this.props.gameIndex}`, {
             method: 'POST',
-            body: text,
+            body: msg,
             credentials: 'include'
         })
-        .then(response => {            
-            if (!response.ok) {                
-                throw response;
+        .then(res => {            
+            if (!res.ok) {                
+                throw res;
             }
             this.setState(()=>({sendInProgress: false}));
             this.inputElement.value = '';                

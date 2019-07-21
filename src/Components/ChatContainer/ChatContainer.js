@@ -2,11 +2,11 @@ import React from 'react';
 import ConversationArea from '../ConversationArea/ConversationArea';
 import ChatInput from '../ChatInput/ChatInput';
 
-const ChatContainer = () => {
+const ChatContainer = ({gameIndex}) => {
     return(
         <div className="chat-contaier">
-            <ConversationArea/>
-            <ChatInput/>
+            <ConversationArea gameIndex={gameIndex}/>
+            <ChatInput gameIndex={gameIndex}/>
         </div>
     );
 }
